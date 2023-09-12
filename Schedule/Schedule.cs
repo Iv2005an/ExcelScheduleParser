@@ -1,6 +1,7 @@
-﻿using OfficeOpenXml;
+﻿using System.Net;
+using OfficeOpenXml;
 
-namespace ExcelScheduleParser.Schedule;
+namespace Schedule_for_educational_institutions.Models.Schedule;
 
 public class Schedule
 {
@@ -17,11 +18,15 @@ public class Schedule
         bool big_space = true;
         while (true)
         {
-            if (excelWorksheet.Cells[row, column].Style.Font.Size != 18)
+            ExcelRange cell = excelWorksheet.Cells[row, column];
+            if (cell.Style.Font.Size != 18)
             {
                 break;
             }
-            groups.Add(new ScheduleGroup(excelWorksheet, row, column));
+            if (cell.Text != "")
+            {
+                groups.Add(new ScheduleGroup(excelWorksheet, row, column));
+            }
             column += big_space ? 5 : 10;
             big_space = !big_space;
         }

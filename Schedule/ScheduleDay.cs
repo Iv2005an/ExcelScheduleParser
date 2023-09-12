@@ -1,6 +1,6 @@
 ﻿using OfficeOpenXml;
 
-namespace ExcelScheduleParser.Schedule;
+namespace Schedule_for_educational_institutions.Models.Schedule;
 
 public class ScheduleDay
 {
